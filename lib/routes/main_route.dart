@@ -16,7 +16,23 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: BeeAppBar(key: ZkValueKey.keyHomeAppbar),
+        appBar: BeeAppBar(
+          key: ZkValueKey.keyHomeAppbar,
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              tooltip: 'user',
+              iconSize: 20,
+              splashRadius: 20,
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            )
+          ],
+        ),
         body: MainPageView(),
         bottomNavigationBar: MainPageNaviBar(),
         //bottomNavigationBar: Obx(() => MainPageNaviBar()),
