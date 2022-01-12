@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zkfly/appviews/index.dart';
 import 'package:zkfly/zkfly.dart';
 import '../filters/index.dart';
 
@@ -18,14 +19,15 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
             SizedBox(
               width: 40,
               height: 40,
-              child: IconButton(
-                  onPressed: () =>
-                      controller.onPressed(FlybeeKey.beeKeyBtnMonitor),
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
-                  icon: const ClipOval(
-                    child: Image(
-                        image: AssetImage('assets/images/monitor_noc.jpg')),
-                  )),
+              child: ZkIconButton(
+                key: key,
+                filter: controller,
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
+                icon: const ClipOval(
+                  child:
+                      Image(image: AssetImage('assets/images/monitor_noc.jpg')),
+                ),
+              ),
             ),
             const Text('监控模式', style: TextStyle(fontSize: 10)),
           ],
