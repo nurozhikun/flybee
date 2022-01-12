@@ -12,10 +12,26 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
   Widget build(BuildContext context) {
     return AppBar(
         title: Text(controller.titleOf("appbar")),
+        centerTitle: true,
         // leading: Text(code),
-        leading: IconButton(
-          onPressed: onPressed,
-          icon: const Icon(Icons.home),
+        leading: InkWell(
+          onTap: onPressed,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              SizedBox(
+                width: 30,
+                height: 30,
+                child: CircleAvatar(
+                    backgroundImage:
+                        AssetImage('assets/images/monitor_noc.jpg')),
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              Text('监控模式', style: TextStyle(fontSize: 10)),
+            ],
+          ),
         ),
         actions: actions);
   }

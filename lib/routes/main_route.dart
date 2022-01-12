@@ -27,9 +27,7 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
               tooltip: 'user',
               iconSize: 20,
               splashRadius: 20,
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-              },
+              onPressed: () {},
             )
           ],
         ),
