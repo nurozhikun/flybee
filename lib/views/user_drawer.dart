@@ -12,40 +12,32 @@ class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          drawerHeader(controller),
-          controller.isLogin.value
-              ? drawerItem('退出登录', Icons.power_settings_new, () {})
-              : drawerItem('登录系统', Icons.login, () {}),
+          drawerHeader(),
+          drawerItem('退出登录', Icons.power_settings_new, () {}),
           const Divider(),
-          controller.isLogin.value
-              ? Column(
-                  children: [
-                    drawerItem('修改密码', Icons.lock, () {}),
-                    const Divider(), //分割线
-                  ],
-                )
-              : const Text(''),
-          controller.isLogin.value
-              ? controller.isAdmin.value
-                  ? Column(
-                      children: [
-                        drawerItem('用户管理', Icons.person_add, () {}),
-                        const Divider(), //分割线
-                        drawerItem('设备管理', Icons.devices_rounded, () {}),
-                        const Divider(), //分割线
-                        drawerItem('库位管理', Icons.category, () {}),
-                        const Divider(), //分割线
-                      ],
-                    )
-                  : const Text('')
-              : const Text(''),
+          Column(
+            children: [
+              drawerItem('修改密码', Icons.lock, () {}),
+              const Divider(), //分割线
+            ],
+          ),
+          Column(
+            children: [
+              drawerItem('用户管理', Icons.person_add, () {}),
+              const Divider(), //分割线
+              drawerItem('设备管理', Icons.devices_rounded, () {}),
+              const Divider(), //分割线
+              drawerItem('库位管理', Icons.category, () {}),
+              const Divider(), //分割线
+            ],
+          )
         ],
       ),
     );
   }
 }
 
-Widget drawerHeader(controller) {
+Widget drawerHeader() {
   return UserAccountsDrawerHeader(
     decoration: BoxDecoration(
         gradient: LinearGradient(
