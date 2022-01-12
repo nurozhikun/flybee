@@ -10,14 +10,9 @@ void main() {
 
 class FlyBeeApp extends ZkGetxApp {
   static FlyBeeApp get to => Get.find();
-  @override
-  Future<void> init() async {
-    await super.init();
+  FlyBeeApp() : super() {
     Get.put<FlyBeeApp>(this, permanent: true);
   }
-
-  // @override
-  // String get test => "in FlyBeeApp";
   @override
   Translations get translations => FlybeeTranslations();
 }
