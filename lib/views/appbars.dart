@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zkfly/zkfly.dart';
-import '../filters/flybee_filter.dart';
+import '../filters/index.dart';
 
 class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     implements PreferredSizeWidget {
@@ -15,21 +15,24 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
         centerTitle: true,
         // leading: Text(code),
         leading: InkWell(
-          onTap: onPressed,
+          onTap: null, //() => controller.onPressed(FlybeeKey.beeKeyBtnMonitor),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 30,
                 height: 30,
                 child: CircleAvatar(
                     backgroundImage:
                         AssetImage('assets/images/monitor_noc.jpg')),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 2,
               ),
-              Text('监控模式', style: TextStyle(fontSize: 10)),
+              Text(
+                  controller.labelTextOf(FlybeeKey.beeKeyBtnMonitor) ??
+                      "monitor",
+                  style: const TextStyle(fontSize: 10)),
             ],
           ),
         ),
