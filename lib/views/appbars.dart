@@ -20,7 +20,7 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
               width: 40,
               height: 40,
               child: ZkIconButton(
-                key: key,
+                key: FlybeeKey.beeKeyBtnMonitor,
                 filter: controller,
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
                 icon: const ClipOval(
@@ -41,7 +41,7 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
             tooltip: 'user',
             iconSize: 20,
             splashRadius: 20,
-            onPressed: () {},
+            onPressed: () => controller.onPressed(FlybeeKey.beeKeyBtnUser),
           )
         ]);
   }
