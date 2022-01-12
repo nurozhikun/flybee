@@ -4,8 +4,7 @@ import '../filters/flybee_filter.dart';
 
 class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     implements PreferredSizeWidget {
-  BeeAppBar({Key? key, this.actions}) : super(key: key);
-  final List<Widget>? actions;
+  BeeAppBar({Key? key}) : super(key: key);
   @override
   Size get preferredSize => controller.appbarSize;
   @override
@@ -33,6 +32,17 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
             ],
           ),
         ),
-        actions: actions);
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            tooltip: 'user',
+            iconSize: 20,
+            splashRadius: 20,
+            onPressed: () {},
+          )
+        ]);
   }
 }

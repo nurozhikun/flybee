@@ -18,18 +18,6 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
       child: Scaffold(
         appBar: BeeAppBar(
           key: ZkValueKey.keyHomeAppbar,
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              tooltip: 'user',
-              iconSize: 20,
-              splashRadius: 20,
-              onPressed: () {},
-            )
-          ],
         ),
         body: MainPageView(),
         bottomNavigationBar: MainPageNaviBar(),
