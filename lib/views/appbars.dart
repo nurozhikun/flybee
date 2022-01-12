@@ -41,7 +41,9 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
             tooltip: 'user',
             iconSize: 20,
             splashRadius: 20,
-            onPressed: () {},
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
           )
         ]);
   }
