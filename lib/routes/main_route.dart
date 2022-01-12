@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flybee/views/user_drawer.dart';
 import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
 import '../filters/flybee_filter.dart';
@@ -21,6 +22,7 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
         ),
         body: MainPageView(),
         bottomNavigationBar: MainPageNaviBar(),
+        endDrawer: UserDrawer(),
         //bottomNavigationBar: Obx(() => MainPageNaviBar()),
       ),
     );
