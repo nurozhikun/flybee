@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/views/user_drawer.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
 import '../filters/flybee_filter.dart';
 import '../views/appbars.dart';
 
 class MainRoute extends ZkGetputView<FlyBeeFilter> {
-  MainRoute({Key? key})
+  MainRoute({Key? key = ZkValueKey.keyHomeRoute})
       : super(
           key: key,
           filter: FlyBeeFilter(),
