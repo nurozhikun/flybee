@@ -4,8 +4,7 @@ import '../filters/index.dart';
 
 class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     implements PreferredSizeWidget {
-  BeeAppBar({Key? key, this.actions}) : super(key: key);
-  final List<Widget>? actions;
+  BeeAppBar({Key? key}) : super(key: key);
   @override
   Size get preferredSize => controller.appbarSize;
   @override
@@ -14,28 +13,34 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
         title: Text(controller.labelTextOf(zkValueKey) ?? "appbar"),
         centerTitle: true,
         // leading: Text(code),
-        leading: InkWell(
-          onTap: null, //() => controller.onPressed(FlybeeKey.beeKeyBtnMonitor),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                width: 30,
-                height: 30,
-                child: CircleAvatar(
-                    backgroundImage:
-                        AssetImage('assets/images/monitor_noc.jpg')),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                  controller.labelTextOf(FlybeeKey.beeKeyBtnMonitor) ??
-                      "monitor",
-                  style: const TextStyle(fontSize: 10)),
-            ],
-          ),
+        leading: Column(
+          children: [
+            SizedBox(
+              width: 40,
+              height: 40,
+              child: IconButton(
+                  onPressed: () =>
+                      controller.onPressed(FlybeeKey.beeKeyBtnMonitor),
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
+                  icon: const ClipOval(
+                    child: Image(
+                        image: AssetImage('assets/images/monitor_noc.jpg')),
+                  )),
+            ),
+            const Text('监控模式', style: TextStyle(fontSize: 10)),
+          ],
         ),
-        actions: actions);
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            tooltip: 'user',
+            iconSize: 20,
+            splashRadius: 20,
+            onPressed: () {},
+          )
+        ]);
   }
 }

@@ -16,6 +16,11 @@ class FlyBeeFilter extends ZkGetxFilter {
   // }
 
   @override
+  String? labelTextOf(ZkValueKey? key) {
+    return key?.value.tr;
+  }
+
+  @override
   void onPressed(ZkValueKey? key) {
     super.onPressed(key);
   }
