@@ -11,7 +11,7 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Text(controller.titleOf("appbar")),
+        title: Text(controller.labelTextOf(zkValueKey) ?? "appbar"),
         centerTitle: true,
         // leading: Text(code),
         leading: InkWell(

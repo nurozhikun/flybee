@@ -10,10 +10,10 @@ class FlyBeeFilter extends ZkGetxFilter {
   //   // return "flybee application";
   //   return "appbar_title".tr;
   // }
-  String titleOf(String obj) {
-    var s = obj + "_title";
-    return s.tr;
-  }
+  // String titleOf(String obj) {
+  //   var s = obj + "_title";
+  //   return s.tr;
+  // }
 
   @override
   void onPressed(ZkValueKey? key) {
