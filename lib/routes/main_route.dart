@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/views/user_drawer.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 // import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
 import '../filters/flybee_filter.dart';
@@ -54,18 +55,18 @@ class MainPageNaviBar extends ZkGetxPageNavigationBar<FlyBeeFilter> {
   MainPageNaviBar() : super(key: const ZkValueKey("main_page"));
   @override
   List<BottomNavigationBarItem> bottomBars(BuildContext context, int index) {
-    return const [
+    return [
       BottomNavigationBarItem(
-        icon: Icon(Icons.place),
-        label: "monitor",
+        icon: const Icon(Icons.place),
+        label: "monitor".tr,
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.playlist_play),
-        label: "task",
+        icon: const Icon(Icons.playlist_play),
+        label: "task".tr,
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: "vehicle",
+        icon: const Icon(Icons.settings),
+        label: "vehicle".tr,
       ),
     ];
   }
