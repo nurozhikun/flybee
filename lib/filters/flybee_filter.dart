@@ -23,42 +23,57 @@ class FlyBeeFilter extends ZkGetxFilter {
 
   @override
   Icon? prefixIconOf(ZkValueKey? key) {
-    return prefixIconMap[key!.value];
+    return beeMap[key!.value] == null ? null : beeMap[key.value]![0];
+    // return prefixIconMap[key!.value];
   }
 
   @override
   void onPressed(ZkValueKey? key) {
-    onPressedMap[key!.value]!();
+    beeMap[key!.value] == null ? null : beeMap[key.value]![1]!();
     super.onPressed(key);
   }
 }
 
-// onPressed
-Map<String, Function()> onPressedMap = {
-  "btn_logout": () {
-    print('*******************************');
-  },
-  "btn_login": () => Get.to(() => LoginRoute()),
-  "btn_fix_password": () {},
-  "btn_user_admin": () {},
-  "btn_device_admin": () {},
-  "btn_locator_admin": () {},
+Map<String, List> beeMap = {
+  "btn_monitor": ['', () {}],
+  "btn_logout": [mapIcon(Icons.power_settings_new), () {}],
+  "btn_login": [mapIcon(Icons.login), () => Get.to(() => LoginRoute())],
+  "btn_fix_password": [mapIcon(Icons.lock), () {}],
+  "btn_user_admin": [mapIcon(Icons.person_add), () {}],
+  "btn_device_admin": [mapIcon(Icons.devices_rounded), () {}],
+  "btn_locator_admin": [mapIcon(Icons.category), () {}],
+  "btn_back": [mapIcon(Icons.arrow_back, size: 24), () => Get.back()]
 };
 
-// prefixIconOf
-Map<String, Icon> prefixIconMap = {
-  "btn_logout": mapIcon(Icons.power_settings_new),
-  "btn_login": mapIcon(Icons.login),
-  "btn_fix_password": mapIcon(Icons.lock),
-  "btn_user_admin": mapIcon(Icons.person_add),
-  "btn_device_admin": mapIcon(Icons.devices_rounded),
-  "btn_locator_admin": mapIcon(Icons.category),
-};
+// // onPressed
+// Map<String, Function()> onPressedMap = {
+//   "btn_monitor": () {},
+//   "btn_logout": () {
+//     print('*******************************');
+//   },
+//   "btn_login": () => Get.to(() => LoginRoute()),
+//   "btn_fix_password": () {},
+//   "btn_user_admin": () {},
+//   "btn_device_admin": () {},
+//   "btn_locator_admin": () {},
+//   "btn_back": () => Get.back()
+// };
 
-Icon mapIcon(IconData icon) {
+// // prefixIconOf
+// Map<String, Icon> prefixIconMap = {
+//   "btn_logout": mapIcon(Icons.power_settings_new),
+//   "btn_login": mapIcon(Icons.login),
+//   "btn_fix_password": mapIcon(Icons.lock),
+//   "btn_user_admin": mapIcon(Icons.person_add),
+//   "btn_device_admin": mapIcon(Icons.devices_rounded),
+//   "btn_locator_admin": mapIcon(Icons.category),
+//   "btn_back": mapIcon(Icons.arrow_back, size: 24),
+// };
+
+Icon mapIcon(IconData icon, {double? size}) {
   return Icon(
     icon,
-    size: 16,
+    size: size ?? 16,
     color: Colors.white,
   );
 }

@@ -6,6 +6,7 @@ class FlybeeKey extends ZkValueKey {
   static const beeKeyBtnLogout = FlybeeKey("btn_logout");
   static const beeKeyBtnLogin = FlybeeKey("btn_login");
   static const beeKeyBtnFixPassword = FlybeeKey("btn_fix_password");
+  static const beeKeyBtnBack = FlybeeKey("btn_back");
   static const beeKeyUserAdmin = FlybeeKey("btn_user_admin");
   static const beeKeyDeviceAdmin = FlybeeKey("btn_device_admin");
   static const beeKeyLocatorAdmin = FlybeeKey("btn_locator_admin");
