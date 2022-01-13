@@ -14,23 +14,21 @@ class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           drawerHeader(),
-          // drawerItem('退出登录', Icons.power_settings_new, () {}),
-          _drawerItem(FlybeeKey.beeKeyBtnLogout),
+          _drawerItem(FlybeeKey.beeKeyBtnLogin),
           const Divider(),
           Column(
             children: [
-              // drawerItem('修改密码', Icons.lock, () {}),
-              const Divider(), //分割线
               _drawerItem(FlybeeKey.beeKeyBtnFixPassword),
+              const Divider(), //分割线
             ],
           ),
           Column(
             children: [
-              drawerItem('用户管理', Icons.person_add, () {}),
+              _drawerItem(FlybeeKey.beeKeyUserAdmin),
               const Divider(), //分割线
-              drawerItem('设备管理', Icons.devices_rounded, () {}),
+              _drawerItem(FlybeeKey.beeKeyDeviceAdmin),
               const Divider(), //分割线
-              drawerItem('库位管理', Icons.category, () {}),
+              _drawerItem(FlybeeKey.beeKeyLocatorAdmin),
               const Divider(), //分割线
             ],
           )
@@ -57,6 +55,7 @@ class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
             const SizedBox(width: 10),
             Text(
               controller.labelTextOf(key) ?? key.value,
+              // controller.labelTextOf(key) ?? key.value,
               style: const TextStyle(fontSize: 14),
             ),
           ],
@@ -99,33 +98,4 @@ class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
       ),
     );
   }
-}
-
-Widget drawerItem(String title, IconData icon, Function()? onTap) {
-  return InkWell(
-    onTap: onTap,
-    child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 30,
-            height: 30,
-            child: CircleAvatar(
-              child: Icon(
-                icon,
-                size: 16,
-              ),
-              backgroundColor: Get.theme.primaryColor,
-            ),
-          ),
-          SizedBox(width: 10),
-          Text(
-            title,
-            style: TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
-    ),
-  );
 }

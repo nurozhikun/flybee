@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:zkfly/appviews/index.dart';
 import 'package:zkfly/zkfly.dart';
 import '../filters/index.dart';
@@ -13,7 +14,6 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     return AppBar(
         title: Text(controller.labelTextOf(zkValueKey) ?? "appbar"),
         centerTitle: true,
-        // leading: Text(code),
         leading: Column(
           children: [
             SizedBox(
