@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flybee/views/login.dart';
+import 'package:flybee/routes/login_route.dart';
 import 'package:zkfly/zkfly.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +38,7 @@ Map<String, Function()> onPressedMap = {
   "btn_logout": () {
     print('*******************************');
   },
-  "btn_login": () => Get.to(() => Login()),
+  "btn_login": () => Get.to(() => LoginRoute()),
   "btn_fix_password": () {},
   "btn_user_admin": () {},
   "btn_device_admin": () {},
