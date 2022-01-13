@@ -19,9 +19,9 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
             SizedBox(
               width: 40,
               height: 40,
-              child: ZkIconButton(
-                key: FlybeeKey.beeKeyBtnMonitor,
-                filter: controller,
+              child: IconButton(
+                onPressed: () =>
+                    controller.onPressed(FlybeeKey.beeKeyBtnMonitor),
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
                 icon: const ClipOval(
                   child:
