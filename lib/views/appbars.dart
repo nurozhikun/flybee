@@ -2,16 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:zkfly/appviews/index.dart';
 import 'package:zkfly/zkfly.dart';
 import '../filters/index.dart';
+import 'package:get/get.dart';
 
 class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     implements PreferredSizeWidget {
   BeeAppBar({Key? key}) : super(key: key);
+
   @override
   Size get preferredSize => controller.appbarSize;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Text(controller.labelTextOf(zkValueKey) ?? "appbar"),
+        title: (zkValueKey == ZkValueKey.keyMainPage)
+            ? Obx(() => Text(controller
+                .labelTextOf(controller
+                    .navigationPageOf(zkValueKey)![controller
+                            .pageControllerOf(zkValueKey)
+                            ?.currentPage
+                            .value ??
+                        0]
+                    .key as ZkValueKey)
+                .toString()))
+            : Text(controller.labelTextOf(zkValueKey) ?? 'appBar'),
         centerTitle: true,
         leading: _buildLeading(),
         actions: _buildAction(context));
@@ -19,7 +31,7 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
 
 // 设置_模式
   Widget? _buildLeading() {
-    return (zkValueKey!.value == 'home_appbar')
+    return (zkValueKey == ZkValueKey.keyMainPage)
         ? Column(
             children: [
               SizedBox(
@@ -47,19 +59,23 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
 // action
   List<Widget> _buildAction(context) {
     return [
-      IconButton(
-        icon: Column(children: const [
-          Icon(
-            Icons.person,
-            color: Colors.white,
-          ),
-          Text('admin', style: TextStyle(fontSize: 10))
-        ]),
-        iconSize: 24,
-        splashRadius: 20,
-        onPressed: () {
-          Scaffold.of(context).openEndDrawer();
-        },
+      Container(
+        width: 60,
+        margin: const EdgeInsets.only(top: 4),
+        child: IconButton(
+          icon: Column(children: const [
+            Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            Text('admin', style: TextStyle(fontSize: 10))
+          ]),
+          iconSize: 24,
+          splashRadius: 20,
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+        ),
       ),
     ];
   }

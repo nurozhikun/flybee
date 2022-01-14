@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flybee/views/user_drawer.dart';
+import 'package:flybee/filters/index.dart';
+import 'package:flybee/views/index.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
-import '../filters/flybee_filter.dart';
-import '../views/appbars.dart';
 
 class MainRoute extends ZkGetputView<FlyBeeFilter> {
   MainRoute({Key? key = ZkValueKey.keyHomeRoute})
@@ -12,14 +11,14 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
           key: key,
           filter: FlyBeeFilter(),
         );
+
   @override
   Widget build(BuildContext context) {
-    // print("build widget of MainRoute");
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: BeeAppBar(
-          key: ZkValueKey.keyHomeAppbar,
+          key: ZkValueKey.keyMainPage,
         ),
         body: MainPageView(),
         bottomNavigationBar: MainPageNaviBar(),
@@ -35,19 +34,11 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
 }
 
 class MainPageView extends ZkGetxPageView<FlyBeeFilter> {
-  MainPageView() : super(key: const ZkValueKey("main_page"));
+  MainPageView() : super(key: ZkValueKey.keyMainPage);
   @override
   @protected
   Widget buildPage(BuildContext context, int page) {
-    // print("screen width:${ZkShared.screenPixelWidth}");
-    return Text("show message ... $page");
-    // if (0 == page) {
-    //   // return AmrMonitor();
-    // } else if (1 == page) {
-    //   return AmrTask();
-    // } else {
-    //   return Text("show message ... $page");
-    // }
+    return controller.navigationPageOf(ZkValueKey.keyMainPage)![page];
   }
 }
 
@@ -56,6 +47,10 @@ class MainPageNaviBar extends ZkGetxPageNavigationBar<FlyBeeFilter> {
   @override
   List<BottomNavigationBarItem> bottomBars(BuildContext context, int index) {
     return [
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.home),
+        label: "home".tr,
+      ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.place),
         label: "monitor".tr,
