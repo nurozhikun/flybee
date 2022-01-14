@@ -1,32 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flybee/filters/index.dart';
 import 'package:zkfly/appviews/index.dart';
 import 'package:zkfly/zkfly.dart';
-import '../filters/index.dart';
 import 'package:get/get.dart';
+
+import '../index.dart';
 
 class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     implements PreferredSizeWidget {
   BeeAppBar({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => controller.appbarSize;
+  Size get preferredSize => (zkValueKey == ZkValueKey.keySettings)
+      ? controller.setAppBarSize
+      : controller.appbarSize;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: (zkValueKey == ZkValueKey.keyMainPage)
-            ? Obx(() => Text(controller
-                .labelTextOf(controller
-                    .navigationPageOf(zkValueKey)![controller
-                            .pageControllerOf(zkValueKey)
-                            ?.currentPage
-                            .value ??
-                        0]
-                    .key as ZkValueKey)
-                .toString()))
-            : Text(controller.labelTextOf(zkValueKey) ?? 'appBar'),
-        centerTitle: true,
-        leading: _buildLeading(),
-        actions: _buildAction(context));
+      title: (zkValueKey == ZkValueKey.keyMainPage)
+          ? Obx(() => Text(controller
+              .labelTextOf(controller
+                  .widgetListOf(zkValueKey)![controller
+                          .pageControllerOf(zkValueKey)
+                          ?.currentPage
+                          .value ??
+                      0]
+                  .key as ZkValueKey)
+              .toString()))
+          : Text(controller.labelTextOf(zkValueKey) ?? 'appBar'),
+      centerTitle: true,
+      leading: _buildLeading(),
+      actions: _buildAction(context),
+      bottom: (zkValueKey == ZkValueKey.keySettings)
+          ? TabBarTab(
+              key: ZkValueKey.keySettingsTap,
+              tabInitialIndex: 0,
+              tabLength: 3,
+            )
+          : null,
+    );
   }
 
 // 设置_模式

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
-import 'package:flybee/views/appbars.dart';
-import 'package:flybee/views/user_drawer.dart';
+import 'package:flybee/views/index.dart';
 import 'package:zkfly/app/index.dart';
 import 'package:zkfly/appviews/index.dart';
 import 'package:zkfly/getxapp/index.dart';

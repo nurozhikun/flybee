@@ -12,9 +12,11 @@ const enUS = <String, String>{
   'login': 'Login',
   'monitor': 'Monitor',
   "point": 'Point',
+  'save': 'Save',
   'settings': 'Settings',
   'title': 'This is Title!',
   'task': 'Task',
+  'test': 'Test',
   'user': 'User',
   'vehicle': 'Vehicle'
 };

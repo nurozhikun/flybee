@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flybee/routes/login_route.dart';
+import 'package:flybee/routes/index.dart';
 import 'package:flybee/views/index.dart';
+import 'package:flybee/views/settings/index.dart';
 import 'package:zkfly/zkfly.dart';
 import 'package:get/get.dart';
 import 'flybee_key.dart';
@@ -12,7 +13,9 @@ class FlyBeeFilter extends ZkGetxFilter {
     _onPressed();
     _navigationPage();
   }
-  Size get appbarSize => const Size.fromHeight(64.0);
+  Size get appbarSize => const Size.fromHeight(60.0);
+  Size get setAppBarSize => const Size.fromHeight(100.0);
+  Size get tabbarSize => const Size.fromHeight(40.0);
   // String get appbarTitle {
   //   // return "flybee application";
   //   return "appbar_title".tr;
@@ -62,12 +65,12 @@ class FlyBeeFilter extends ZkGetxFilter {
 
 // onPressed
   void _onPressed() {
-    insertOnPressed(FlybeeKey.beeKeyBtnMonitor, () {});
+    insertOnPressed(FlybeeKey.beeKeyBtnMonitor, () => Get.to(SettingsRoute()));
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
     insertOnPressed(FlybeeKey.beeKeyBtnLogout, () {});
     insertOnPressed(FlybeeKey.beeKeyBtnLogin, () {
       Get.back();
-      Get.to(() => LoginRoute());
+      Get.to(LoginRoute());
     });
     insertOnPressed(FlybeeKey.beeKeyBtnFixPassword, () {});
     insertOnPressed(FlybeeKey.beeKeyBtnBack, () => Get.back());
@@ -78,15 +81,14 @@ class FlyBeeFilter extends ZkGetxFilter {
 
   // navigationPage
   void _navigationPage() {
-    insertNavigationPageBuilder(ZkValueKey.keyMainPage,
+    // bottomNavigation
+    insertWidgetListBuilder(ZkValueKey.keyMainPage,
         () => [AmrHome(), AmrMonitor(), AmrTask(), AmrVehicle()]);
+    // settingTab
+    insertWidgetListBuilder(ZkValueKey.keySettingsTap,
+        () => tabData.map((e) => mapTab(e)).toList());
+    // settingTabPage
+    insertWidgetListBuilder(ZkValueKey.keySettingsTapPage,
+        () => [MainServer(), AreaServer(), GeneralSet()]);
   }
-}
-
-Icon mapIcon(IconData icon, {double? size}) {
-  return Icon(
-    icon,
-    size: size ?? 16,
-    color: Colors.white,
-  );
 }
