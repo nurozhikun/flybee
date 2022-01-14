@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zkfly/zkfly.dart';
+import 'package:dio/dio.dart';
 import 'routes/main_route.dart';
 import 'package:get/get.dart';
 import 'lang/flybee_translations.dart';
+import 'filters/index.dart';
 
 void main() {
   FlyBeeApp().run(MainRoute());
@@ -15,6 +17,13 @@ class FlyBeeApp extends ZkGetxApp {
   }
   @override
   Translations get translations => FlybeeTranslations();
+  @protected
+  @override
+  ZkGetxHttpApi? get httpapi {
+    FlybeeHttpApi(BaseOptions(
+      baseUrl: 'http://localhost:8080',
+    ));
+  }
 }
 
 /*
