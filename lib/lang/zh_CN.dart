@@ -12,9 +12,11 @@ const zhCN = <String, String>{
   'login': '登录',
   'monitor': '监控',
   "point": '库位',
+  'save': '保存',
   'settings': '设置',
   'title': '这是标题',
   'task': '任务',
+  'test': '测试',
   'user': '用户',
   'vehicle': '车辆'
 };

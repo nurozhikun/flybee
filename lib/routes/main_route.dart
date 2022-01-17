@@ -34,16 +34,16 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
 }
 
 class MainPageView extends ZkGetxPageView<FlyBeeFilter> {
-  MainPageView() : super(key: ZkValueKey.keyMainPage);
+  MainPageView() : super(key: ZkValueKey.keyMainPage, itemCount: 4);
   @override
   @protected
   Widget buildPage(BuildContext context, int page) {
-    return controller.navigationPageOf(ZkValueKey.keyMainPage)![page];
+    return controller.widgetListOf(ZkValueKey.keyMainPage)![page];
   }
 }
 
 class MainPageNaviBar extends ZkGetxPageNavigationBar<FlyBeeFilter> {
-  MainPageNaviBar() : super(key: const ZkValueKey("main_page"));
+  MainPageNaviBar() : super(key: ZkValueKey.keyMainPage);
   @override
   List<BottomNavigationBarItem> bottomBars(BuildContext context, int index) {
     return [
