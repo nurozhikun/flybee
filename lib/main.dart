@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zkfly/zkfly.dart';
+import 'package:zkfly_ims/zkfly_ims.dart';
 import 'package:dio/dio.dart';
 import 'routes/main_route.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ void main() {
   FlyBeeApp().run(MainRoute());
 }
 
-class FlyBeeApp extends ZkGetxApp {
+class FlyBeeApp extends ImsBeeApp {
   static FlyBeeApp get to => Get.find();
   FlyBeeApp() : super() {
     Get.put<FlyBeeApp>(this, permanent: true);
