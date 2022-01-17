@@ -65,17 +65,34 @@ class FlyBeeFilter extends ZkGetxFilter {
 
 // onPressed
   void _onPressed() {
+    // 跳转到设置页
     insertOnPressed(FlybeeKey.beeKeyBtnMonitor, () => Get.to(SettingsRoute()));
+
+    // 用户
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
+
+    // 退出登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogout, () {});
+
+    // 跳转到登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogin, () {
       Get.back();
       Get.to(LoginRoute());
     });
+
+    // 修改密码
     insertOnPressed(FlybeeKey.beeKeyBtnFixPassword, () {});
+
+    // 返回
     insertOnPressed(FlybeeKey.beeKeyBtnBack, () => Get.back());
+
+    // 用户管理
     insertOnPressed(FlybeeKey.beeKeyUserAdmin, () {});
+
+    // 设备管理
     insertOnPressed(FlybeeKey.beeKeyDeviceAdmin, () {});
+
+    // 库位管理
     insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, () {});
   }
 
