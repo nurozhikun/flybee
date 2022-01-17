@@ -21,6 +21,7 @@ dependencies:
     sdk: flutter
   # 设备信息
   device_info_plus: ^3.2.1
+  quiver: ^3.0.1+1
 
   zkfly:
     path: ../zkfly
