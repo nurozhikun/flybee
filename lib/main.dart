@@ -19,8 +19,8 @@ class FlyBeeApp extends ImsBeeApp {
   }
   @override
   Translations get translations => FlybeeTranslations();
-  @override
-  ZkGetxTheme get theme => FlybeeTheme();
+  // @override
+  // ZkGetxTheme get theme => FlybeeTheme();
   @protected
   @override
   ZkGetxHttpApi? get httpapi {
@@ -28,6 +28,9 @@ class FlyBeeApp extends ImsBeeApp {
       baseUrl: 'http://localhost:8080',
     ));
   }
+  @protected
+  @override
+  ThemeData? themeOf(int i) => null;
 }
 
 /*
