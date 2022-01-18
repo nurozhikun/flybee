@@ -6,6 +6,7 @@ import 'routes/main_route.dart';
 import 'package:get/get.dart';
 import 'lang/flybee_translations.dart';
 import 'filters/index.dart';
+import 'theme/flybee_theme.dart';
 
 void main() {
   FlyBeeApp().run(MainRoute());
@@ -18,6 +19,8 @@ class FlyBeeApp extends ImsBeeApp {
   }
   @override
   Translations get translations => FlybeeTranslations();
+  @override
+  ZkGetxTheme get getTheme => FlybeeTheme();
   @protected
   @override
   ZkGetxHttpApi? get httpapi {

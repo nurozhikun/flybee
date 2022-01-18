@@ -12,7 +12,6 @@ class FlyBeeFilter extends ZkGetxFilter {
     _iconBuild();
     _onPressed();
     _navigationPage();
-    _themeBuild();
   }
   Size get appbarSize => const Size.fromHeight(60.0);
   Size get setAppBarSize => const Size.fromHeight(100.0);
@@ -111,30 +110,21 @@ class FlyBeeFilter extends ZkGetxFilter {
         () => [MainServer(), AreaServer(), GeneralSet()]);
   }
 
-  void _themeBuild() {
-    insertThemeBuilder(
-        ZkValueKey.keyThemeTeal,
-        () => ThemeData(
-              brightness: Brightness.light,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              primarySwatch: Colors.teal,
-            ));
-    insertThemeBuilder(
-        ZkValueKey.keyThemeIndigo,
-        () => ThemeData(
-              // brightness: Brightness.light,
-              // splashColor: Colors.transparent,
-              // highlightColor: Colors.transparent,
-              primarySwatch: Colors.indigo,
-            ));
-    insertThemeBuilder(
-        ZkValueKey.keyThemePink,
-        () => ThemeData(
-              brightness: Brightness.light,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              primarySwatch: Colors.pink,
-            ));
-  }
+  // void _themeBuild() {
+  //   insertThemeBuilder(
+  //       ZkValueKey.keyThemeTeal,
+  //       () => ThemeData(
+  //             primarySwatch: Colors.teal,
+  //           ));
+  //   insertThemeBuilder(
+  //       ZkValueKey.keyThemeIndigo,
+  //       () => ThemeData(
+  //             primarySwatch: Colors.indigo,
+  //           ));
+  //   insertThemeBuilder(
+  //       ZkValueKey.keyThemePink,
+  //       () => ThemeData(
+  //             primarySwatch: Colors.pink,
+  //           ));
+  // }
 }
