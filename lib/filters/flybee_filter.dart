@@ -12,6 +12,7 @@ class FlyBeeFilter extends ZkGetxFilter {
     _iconBuild();
     _onPressed();
     _navigationPage();
+    _themeBuild();
   }
   Size get appbarSize => const Size.fromHeight(60.0);
   Size get setAppBarSize => const Size.fromHeight(100.0);
@@ -66,34 +67,35 @@ class FlyBeeFilter extends ZkGetxFilter {
 // onPressed
   void _onPressed() {
     // 跳转到设置页
-    insertOnPressed(FlybeeKey.beeKeyBtnMonitor, () => Get.to(SettingsRoute()));
+    insertOnPressed(
+        FlybeeKey.beeKeyBtnMonitor, (params) => Get.to(SettingsRoute()));
 
     // 用户
-    insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
+    insertOnPressed(FlybeeKey.beeKeyBtnUser, (params) {});
 
     // 退出登录
-    insertOnPressed(FlybeeKey.beeKeyBtnLogout, () {});
+    insertOnPressed(FlybeeKey.beeKeyBtnLogout, (params) {});
 
     // 跳转到登录
-    insertOnPressed(FlybeeKey.beeKeyBtnLogin, () {
+    insertOnPressed(FlybeeKey.beeKeyBtnLogin, (params) {
       Get.back();
       Get.to(LoginRoute());
     });
 
     // 修改密码
-    insertOnPressed(FlybeeKey.beeKeyBtnFixPassword, () {});
+    insertOnPressed(FlybeeKey.beeKeyBtnFixPassword, (params) {});
 
     // 返回
-    insertOnPressed(FlybeeKey.beeKeyBtnBack, () => Get.back());
+    insertOnPressed(FlybeeKey.beeKeyBtnBack, (params) => Get.back());
 
     // 用户管理
-    insertOnPressed(FlybeeKey.beeKeyUserAdmin, () {});
+    insertOnPressed(FlybeeKey.beeKeyUserAdmin, (params) {});
 
     // 设备管理
-    insertOnPressed(FlybeeKey.beeKeyDeviceAdmin, () {});
+    insertOnPressed(FlybeeKey.beeKeyDeviceAdmin, (params) {});
 
     // 库位管理
-    insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, () {});
+    insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, (params) {});
   }
 
   // navigationPage
@@ -107,5 +109,32 @@ class FlyBeeFilter extends ZkGetxFilter {
     // settingTabPage
     insertWidgetListBuilder(ZkValueKey.keySettingsTapPage,
         () => [MainServer(), AreaServer(), GeneralSet()]);
+  }
+
+  void _themeBuild() {
+    insertThemeBuilder(
+        ZkValueKey.keyThemeTeal,
+        () => ThemeData(
+              brightness: Brightness.light,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              primarySwatch: Colors.teal,
+            ));
+    insertThemeBuilder(
+        ZkValueKey.keyThemeIndigo,
+        () => ThemeData(
+              // brightness: Brightness.light,
+              // splashColor: Colors.transparent,
+              // highlightColor: Colors.transparent,
+              primarySwatch: Colors.indigo,
+            ));
+    insertThemeBuilder(
+        ZkValueKey.keyThemePink,
+        () => ThemeData(
+              brightness: Brightness.light,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              primarySwatch: Colors.pink,
+            ));
   }
 }
