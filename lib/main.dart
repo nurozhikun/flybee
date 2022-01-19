@@ -30,9 +30,9 @@ class FlyBeeApp extends ImsBeeApp {
     ));
   }
 
-  // @protected
-  // @override
-  // ThemeData? themeOf(int i) => null;
+  @protected
+  @override
+  ThemeData themeOf(int i) => themeList[i];
 }
 
 /*

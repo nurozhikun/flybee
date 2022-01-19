@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flybee/main.dart';
 import 'package:flybee/routes/index.dart';
+import 'package:flybee/theme/flybee_theme.dart';
 import 'package:flybee/views/index.dart';
 import 'package:flybee/views/settings/index.dart';
 import 'package:zkfly/zkfly.dart';
@@ -16,6 +18,7 @@ class FlyBeeFilter extends ZkGetxFilter {
   Size get appbarSize => const Size.fromHeight(60.0);
   Size get setAppBarSize => const Size.fromHeight(100.0);
   Size get tabbarSize => const Size.fromHeight(40.0);
+
   // String get appbarTitle {
   //   // return "flybee application";
   //   return "appbar_title".tr;
@@ -95,6 +98,14 @@ class FlyBeeFilter extends ZkGetxFilter {
 
     // 库位管理
     insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, () {});
+
+    // 主题切换
+    insertOnPressed(ZkValueKey.keyTheme, (int index) {
+      if (index < 0) index = 0;
+      if (index > themeList.length - 1) index = themeList.length - 1;
+      ZkGetxStorage.to.themeIndex = index;
+      Get.changeTheme(themeList[index]);
+    });
   }
 
   // navigationPage
@@ -109,22 +120,4 @@ class FlyBeeFilter extends ZkGetxFilter {
     insertWidgetListBuilder(ZkValueKey.keySettingsTapPage,
         () => [MainServer(), AreaServer(), GeneralSet()]);
   }
-
-  // void _themeBuild() {
-  //   insertThemeBuilder(
-  //       ZkValueKey.keyThemeTeal,
-  //       () => ThemeData(
-  //             primarySwatch: Colors.teal,
-  //           ));
-  //   insertThemeBuilder(
-  //       ZkValueKey.keyThemeIndigo,
-  //       () => ThemeData(
-  //             primarySwatch: Colors.indigo,
-  //           ));
-  //   insertThemeBuilder(
-  //       ZkValueKey.keyThemePink,
-  //       () => ThemeData(
-  //             primarySwatch: Colors.pink,
-  //           ));
-  // }
 }
