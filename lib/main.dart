@@ -32,7 +32,7 @@ class FlyBeeApp extends ImsBeeApp {
 
   @protected
   @override
-  ThemeData? themeOf(int i) => null;
+  ThemeData? themeOf(int i) => themeList[i];
 }
 
 /*

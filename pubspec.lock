@@ -120,6 +120,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.0.4"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -148,6 +155,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.0"
+  fl_chart:
+    dependency: "direct main"
+    description:
+      name: fl_chart
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.41.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -301,6 +315,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"
+  pull_to_refresh:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.0"
   quiver:
     dependency: "direct main"
     description:

@@ -16,6 +16,7 @@ class FlyBeeFilter extends ZkGetxFilter {
   Size get appbarSize => const Size.fromHeight(60.0);
   Size get setAppBarSize => const Size.fromHeight(100.0);
   Size get tabbarSize => const Size.fromHeight(40.0);
+
   // String get appbarTitle {
   //   // return "flybee application";
   //   return "appbar_title".tr;

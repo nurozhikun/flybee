@@ -1,4 +1,4 @@
-export 'amr_home.dart';
-export 'amr_monitor.dart';
-export 'amr_task.dart';
-export 'amr_vehicle.dart';
+export 'home/amr_home.dart';
+export 'monitor/amr_monitor.dart';
+export 'task/amr_task.dart';
+export 'vehicle/amr_vehicle.dart';
