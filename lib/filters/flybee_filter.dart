@@ -66,7 +66,8 @@ class FlyBeeFilter extends ZkGetxFilter {
 // onPressed
   void _onPressed() {
     // 跳转到设置页
-    insertOnPressed(FlybeeKey.beeKeyBtnMonitor, () => Get.to(SettingsRoute()));
+    insertOnPressed(
+        FlybeeKey.beeKeyBtnMonitor, () => Get.to(() => SettingsRoute()));
 
     // 用户
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
@@ -77,7 +78,7 @@ class FlyBeeFilter extends ZkGetxFilter {
     // 跳转到登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogin, () {
       Get.back();
-      Get.to(LoginRoute());
+      Get.to(() => LoginRoute());
     });
 
     // 修改密码
