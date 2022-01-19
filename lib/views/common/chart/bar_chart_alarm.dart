@@ -1,10 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zkfly/zkfly.dart';
+import 'package:flybee/filters/index.dart';
 
-class BarChartAlarm extends StatelessWidget {
-  const BarChartAlarm({Key? key, required this.data, this.width})
-      : super(key: key);
+class BarChartAlarm extends ZkGetfindView<FlyBeeFilter> {
+  BarChartAlarm({Key? key, required this.data, this.width}) : super(key: key);
   final List data;
 
   // 宽度

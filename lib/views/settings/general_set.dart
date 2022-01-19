@@ -26,27 +26,41 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
         ]),
 
         // 主题
-        ExpansionTile(
-            title: const Text('主题'),
-            children: themeList
-                .asMap()
-                .entries
-                .map((e) => ListTile(
-                    leading: SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: CircleAvatar(
-                        backgroundColor: e.value.primaryColor,
+        ValueBuilder<int?>(
+          initialValue: ZkGetxApp.to.shared.themeIndex,
+          builder: (value, updateFn) {
+            return ExpansionTile(
+                title: const Text('主题'),
+                children: themeList
+                    .asMap()
+                    .entries
+                    .map(
+                      (e) => ListTile(
+                        leading: SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircleAvatar(
+                            backgroundColor: e.value.primaryColor,
+                          ),
+                        ),
+                        trailing: (value == e.key)
+                            ? const Icon(
+                                Icons.check,
+                                size: 16,
+                              )
+                            : const Text(''),
+                        onTap: () => updateFn(e.key),
                       ),
-                    ),
-                    trailing: (/* ZkGetxApp.to.themeIndex */ 0 == e.key)
-                        ? const Icon(
-                            Icons.check,
-                            size: 16,
-                          )
-                        : const Text(''),
-                    onTap: () => ZkGetxApp.to.themeIndex = e.key))
-                .toList()),
+                    )
+                    .toList());
+          },
+          onUpdate: (value) {
+            if (null != value) {
+              ZkGetxApp.to.themeIndex = value;
+            }
+          },
+        ),
+
         const ExpansionTile(title: Text('语言'), children: [
           ListTile(
             title: Text('中文'),
