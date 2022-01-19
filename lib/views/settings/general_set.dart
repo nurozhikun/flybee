@@ -11,18 +11,22 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // 功能模式
         const ExpansionTile(title: Text('监控模式'), children: [
           ListTile(
             title: Text('监控模式'),
           )
         ]),
+
+        // 位置
         const ExpansionTile(title: Text('未选择'), children: [
           ListTile(
             title: Text('未选择'),
           )
         ]),
+
         // 主题
-        Obx(() => ExpansionTile(
+        ExpansionTile(
             title: const Text('主题'),
             children: themeList
                 .asMap()
@@ -42,7 +46,7 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
                           )
                         : const Text(''),
                     onTap: () => ZkGetxApp.to.themeIndex = e.key))
-                .toList())),
+                .toList()),
         const ExpansionTile(title: Text('语言'), children: [
           ListTile(
             title: Text('中文'),
