@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
-import 'package:zkfly/appviews/index.dart';
-import 'package:zkfly/getxapp/index.dart';
+// import 'package:zkfly/appviews/index.dart';
+// import 'package:zkfly/getxapp/index.dart';
 import 'package:zkfly/zkfly.dart';
 
 class MainServer extends ZkGetfindView<FlyBeeFilter> {
@@ -19,7 +19,19 @@ class MainServer extends ZkGetfindView<FlyBeeFilter> {
         padding: const EdgeInsets.all(18.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text('设备号'), Text(ZkGetxPlatform.to.identifier.value)],
+          children: [
+            const Text('设备号'),
+            FutureBuilder<String>(
+              future: initPlatformState(),
+              builder: (ctx, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(snapshot.data == null ? "" : snapshot.data!);
+                } else {
+                  return const Text("is loading");
+                }
+              },
+            ),
+          ],
         ),
       )
     ]);

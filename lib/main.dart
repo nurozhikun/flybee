@@ -13,6 +13,7 @@ void main() {
 }
 
 class FlyBeeApp extends ImsBeeApp {
+  ZkShared? shared;
   static FlyBeeApp get to => Get.find();
   FlyBeeApp() : super() {
     Get.put<FlyBeeApp>(this, permanent: true);
@@ -26,6 +27,10 @@ class FlyBeeApp extends ImsBeeApp {
       baseUrl: 'http://localhost:8080',
     ));
   }
+
+  @protected
+  @override
+  ThemeData? themeOf(int i) => themeList[i];
 }
 
 /*
