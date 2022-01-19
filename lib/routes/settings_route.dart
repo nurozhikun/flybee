@@ -5,7 +5,7 @@ import 'package:zkfly/app/index.dart';
 import 'package:zkfly/getxapp/index.dart';
 
 class SettingsRoute extends ZkGetputView<FlyBeeFilter> {
-  SettingsRoute({Key? key = ZkValueKey.keySettings})
+  SettingsRoute({Key? key = FlybeeKey.keySettings})
       : super(
           key: key,
           filter: FlyBeeFilter(),
@@ -19,8 +19,8 @@ class SettingsRoute extends ZkGetputView<FlyBeeFilter> {
         key: key,
       ),
       body: TabBarView(
-        children: controller.widgetListOf(ZkValueKey.keySettingsTapPage) ?? [],
-        controller: controller.tabControllerOf(ZkValueKey.keySettingsTap,
+        children: controller.widgetListOf(FlybeeKey.keySettingsTapPage) ?? [],
+        controller: controller.tabControllerOf(FlybeeKey.keySettingsTap,
             vsync: controller),
         physics: const NeverScrollableScrollPhysics(),
       ),

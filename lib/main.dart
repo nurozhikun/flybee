@@ -30,9 +30,27 @@ class FlyBeeApp extends ImsBeeApp {
     ));
   }
 
-  // @protected
-  // @override
-  // ThemeData? themeOf(int i) => null;
+  @protected
+  @override
+  ThemeData themeOf(int i) {
+    if (i < 0) {
+      i = 0;
+    } else if (i >= themeList.length) {
+      i = themeList.length - 1;
+    }
+    return themeList[i];
+  }
+
+  @protected
+  @override
+  Locale localeOf(int i) {
+    if (i < 0) {
+      i = 0;
+    } else if (i >= localeList.length) {
+      i = localeList.length - 1;
+    }
+    return localeList[i];
+  }
 }
 
 /*

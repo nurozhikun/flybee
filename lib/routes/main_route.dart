@@ -18,7 +18,7 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: BeeAppBar(
-          key: ZkValueKey.keyMainPage,
+          key: FlybeeKey.keyMainPage,
         ),
         body: MainPageView(),
         bottomNavigationBar: MainPageNaviBar(),
@@ -34,16 +34,16 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
 }
 
 class MainPageView extends ZkGetxPageView<FlyBeeFilter> {
-  MainPageView() : super(key: ZkValueKey.keyMainPage, itemCount: 4);
+  MainPageView() : super(key: FlybeeKey.keyMainPage, itemCount: 4);
   @override
   @protected
   Widget buildPage(BuildContext context, int page) {
-    return controller.widgetListOf(ZkValueKey.keyMainPage)![page];
+    return controller.widgetListOf(FlybeeKey.keyMainPage)![page];
   }
 }
 
 class MainPageNaviBar extends ZkGetxPageNavigationBar<FlyBeeFilter> {
-  MainPageNaviBar() : super(key: ZkValueKey.keyMainPage);
+  MainPageNaviBar() : super(key: FlybeeKey.keyMainPage);
   @override
   List<BottomNavigationBarItem> bottomBars(BuildContext context, int index) {
     return [

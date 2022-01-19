@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:zkfly/getxapp/index.dart';
-import 'package:get/get.dart';
 
 import '../../index.dart';
 
@@ -25,14 +24,14 @@ class AmrVehicle extends ZkGetfindView<FlyBeeFilter> {
       controller: refreshController,
       titleList: const ['编号', '状态', '位置'],
       buildDataItem: (index) {
-        return _buildDataItem(dataListCopy[index]);
+        return _buildDataItem(dataListCopy[index], context);
       },
     );
   }
 }
 
 // 内容
-Widget _buildDataItem(data) {
+Widget _buildDataItem(data, context) {
   return Column(
     children: [
       Row(
@@ -40,12 +39,12 @@ Widget _buildDataItem(data) {
           // 编号
           BuildExpandedCell(
             text: data['id'].toString(),
-            textColor: Get.theme.primaryColor,
+            textColor: Theme.of(context).primaryColor,
             onTap: () {},
           ),
           // 状态
           BuildExpandedCell(
-            containerColor: Get.theme.primaryColor,
+            containerColor: Theme.of(context).primaryColor,
             text: data['lifeCycle'].toString(),
             textColor: Colors.white,
           ),

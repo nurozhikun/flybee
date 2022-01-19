@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
-// import 'package:zkfly/appviews/index.dart';
-// import 'package:zkfly/getxapp/index.dart';
 import 'package:zkfly/zkfly.dart';
+
+import '../index.dart';
 
 class MainServer extends ZkGetfindView<FlyBeeFilter> {
   MainServer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      ZkServerForm(
-        key: ZkValueKey.keyMainServer,
-        filter: controller,
-      ),
-      const Divider(),
-      Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('设备号'),
-            FutureBuilder<String>(
-              future: initPlatformState(),
-              builder: (ctx, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(snapshot.data == null ? "" : snapshot.data!);
-                } else {
-                  return const Text("is loading");
-                }
-              },
-            ),
-          ],
+    return SingleChildScrollView(
+      child: Column(children: [
+        ServerForm(
+          key: FlybeeKey.keyMainServer,
+          filter: controller,
         ),
-      )
-    ]);
+        const Divider(),
+        Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('设备号'),
+              FutureBuilder<String>(
+                future: initPlatformState(),
+                builder: (ctx, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(snapshot.data == null ? "" : snapshot.data!);
+                  } else {
+                    return const Text("is loading");
+                  }
+                },
+              ),
+            ],
+          ),
+        )
+      ]),
+    );
   }
 }

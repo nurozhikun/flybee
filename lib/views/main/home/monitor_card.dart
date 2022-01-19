@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MonitorCard extends StatelessWidget {
   const MonitorCard({Key? key, required this.items, required this.title})
@@ -47,7 +46,7 @@ List<Widget> circleItems(items, BuildContext context) {
             width: 40,
             height: 40,
             child: CircleAvatar(
-              backgroundColor: Get.theme.primaryColor,
+              backgroundColor: Theme.of(context).primaryColor,
               child: Text(
                 item['count'],
                 style: const TextStyle(color: Colors.white, fontSize: 12),

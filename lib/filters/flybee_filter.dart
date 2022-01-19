@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flybee/main.dart';
 import 'package:flybee/routes/index.dart';
-import 'package:flybee/theme/flybee_theme.dart';
 import 'package:flybee/views/index.dart';
 import 'package:flybee/views/settings/index.dart';
 import 'package:zkfly/zkfly.dart';
@@ -45,8 +43,25 @@ class FlyBeeFilter extends ZkGetxFilter {
   //   beeMap[key!.value] == null ? null : beeMap[key.value]![1]!();
   //   super.onPressed(key);
   // }
+  // navigationPage
+  void _navigationPage() {
+    // bottomNavigation
+    insertWidgetListBuilder(FlybeeKey.keyMainPage,
+        () => [AmrHome(), AmrMonitor(), AmrTask(), AmrVehicle()]);
+    // settingTab
+    insertWidgetListBuilder(
+        FlybeeKey.keySettingsTap,
+        () => [
+              labelTextOf(FlybeeKey.keyMainServer),
+              labelTextOf(FlybeeKey.keyAreaServer),
+              labelTextOf(FlybeeKey.keyGeneralSet)
+            ].asMap().entries.map((e) => mapTab(e)).toList());
+    // settingTabPage
+    insertWidgetListBuilder(FlybeeKey.keySettingsTapPage,
+        () => [MainServer(), AreaServer(), GeneralSet()]);
+  }
 
-// iconBuild
+  // iconBuild
   void _iconBuild() {
     insertPrefixIconBuilder(FlybeeKey.beeKeyBtnMonitor, () => null);
     insertPrefixIconBuilder(FlybeeKey.beeKeyBtnUser, () => null);
@@ -69,7 +84,8 @@ class FlyBeeFilter extends ZkGetxFilter {
 // onPressed
   void _onPressed() {
     // 跳转到设置页
-    insertOnPressed(FlybeeKey.beeKeyBtnMonitor, () => Get.to(SettingsRoute()));
+    insertOnPressed(
+        FlybeeKey.beeKeyBtnMonitor, () => Get.to(() => SettingsRoute()));
 
     // 用户
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
@@ -80,7 +96,7 @@ class FlyBeeFilter extends ZkGetxFilter {
     // 跳转到登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogin, () {
       Get.back();
-      Get.to(LoginRoute());
+      Get.to(() => LoginRoute());
     });
 
     // 修改密码
@@ -98,25 +114,22 @@ class FlyBeeFilter extends ZkGetxFilter {
     // 库位管理
     insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, () {});
 
-    // 主题切换
-    insertOnPressed(ZkValueKey.keyTheme, (int index) {
-      if (index < 0) index = 0;
-      if (index > themeList.length - 1) index = themeList.length - 1;
-      ZkGetxStorage.to.themeIndex = index;
-      Get.changeTheme(themeList[index]);
+    // 服务器测试
+    insertOnPressed(FlybeeKey.keyTest, (String ip, String port, FlybeeKey key) {
+      if (key == FlybeeKey.keyMainServer) {
+        print(ip + ':' + port);
+      } else if (key == FlybeeKey.keyAreaServer) {
+        print(ip + ':' + port);
+      }
     });
-  }
 
-  // navigationPage
-  void _navigationPage() {
-    // bottomNavigation
-    insertWidgetListBuilder(ZkValueKey.keyMainPage,
-        () => [AmrHome(), AmrMonitor(), AmrTask(), AmrVehicle()]);
-    // settingTab
-    insertWidgetListBuilder(ZkValueKey.keySettingsTap,
-        () => tabData.map((e) => mapTab(e)).toList());
-    // settingTabPage
-    insertWidgetListBuilder(ZkValueKey.keySettingsTapPage,
-        () => [MainServer(), AreaServer(), GeneralSet()]);
+    // 服务器保存
+    insertOnPressed(FlybeeKey.keySave, (String ip, String port, FlybeeKey key) {
+      if (key == FlybeeKey.keyMainServer) {
+        print(ip + ':' + port);
+      } else if (key == FlybeeKey.keyAreaServer) {
+        print(ip + ':' + port);
+      }
+    });
   }
 }

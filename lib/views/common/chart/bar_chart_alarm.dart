@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class BarChartAlarm extends StatelessWidget {
   const BarChartAlarm({Key? key, required this.data, this.width})
@@ -31,7 +30,7 @@ class BarChartAlarm extends StatelessWidget {
                     y: e["yAxis"],
                     width: 25,
                     // 设置多组颜色会形成渐变
-                    colors: [Get.theme.primaryColor],
+                    colors: [Theme.of(context).primaryColor],
                     borderRadius: BorderRadius.zero,
                   ),
                 ],
@@ -45,7 +44,7 @@ class BarChartAlarm extends StatelessWidget {
             axisTitleData: _buildFlAxisTitleData(),
 
             // barTouch数据,点击每个bar显示数据的样式
-            barTouchData: _buildBarTouchData(),
+            barTouchData: _buildBarTouchData(context),
 
             // BorderData,图表的边框
             borderData: _buildFlBorderData()),
@@ -114,7 +113,7 @@ class BarChartAlarm extends StatelessWidget {
   }
 
   /// 点击提示
-  BarTouchData _buildBarTouchData() {
+  BarTouchData _buildBarTouchData(context) {
     return BarTouchData(
       enabled: true,
       // 触摸精度阈值
@@ -124,13 +123,11 @@ class BarChartAlarm extends StatelessWidget {
       // 触摸bar是否显示提示框
       handleBuiltInTouches: true,
       // 触摸bar回调函数
-      touchCallback: (flTouchEvent, barTouchResponse) {
-        print(barTouchResponse);
-      },
+      touchCallback: (flTouchEvent, barTouchResponse) {},
       // 触摸提示的内容区域
       touchTooltipData: BarTouchTooltipData(
           // 背景颜色
-          tooltipBgColor: Get.theme.primaryColor,
+          tooltipBgColor: Theme.of(context).primaryColor,
           // 圆角radius
           tooltipRoundedRadius: 10,
           // padding

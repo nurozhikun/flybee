@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
-import 'package:zkfly/appviews/index.dart';
 import 'package:zkfly/zkfly.dart';
 import 'package:get/get.dart';
 
@@ -11,13 +10,13 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
   BeeAppBar({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => (zkValueKey == ZkValueKey.keySettings)
+  Size get preferredSize => (zkValueKey == FlybeeKey.keySettings)
       ? controller.setAppBarSize
       : controller.appbarSize;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: (zkValueKey == ZkValueKey.keyMainPage)
+      title: (zkValueKey == FlybeeKey.keyMainPage)
           ? Obx(() => Text(controller
               .labelTextOf(controller
                   .widgetListOf(zkValueKey)![controller
@@ -31,9 +30,9 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
       centerTitle: true,
       leading: _buildLeading(),
       actions: _buildAction(context),
-      bottom: (zkValueKey == ZkValueKey.keySettings)
+      bottom: (zkValueKey == FlybeeKey.keySettings)
           ? TabBarTab(
-              key: ZkValueKey.keySettingsTap,
+              key: FlybeeKey.keySettingsTap,
               tabInitialIndex: 0,
               tabLength: 3,
             )
@@ -43,7 +42,7 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
 
 // 设置_模式
   Widget? _buildLeading() {
-    return (zkValueKey == ZkValueKey.keyMainPage)
+    return (zkValueKey == FlybeeKey.keyMainPage)
         ? Column(
             children: [
               SizedBox(
