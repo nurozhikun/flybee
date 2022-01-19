@@ -39,7 +39,7 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
                         backgroundColor: e.value.primaryColor,
                       ),
                     ),
-                    trailing: (ZkGetxApp.to.themeObs.value == e.key)
+                    trailing: (0 == e.key)
                         ? const Icon(
                             Icons.check,
                             size: 16,

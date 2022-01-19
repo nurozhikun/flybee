@@ -24,15 +24,15 @@ class FlyBeeApp extends ImsBeeApp {
   // ZkGetxTheme get theme => FlybeeTheme();
   @protected
   @override
-  ZkGetxHttpApi? get createHttpApi {
-    FlybeeHttpApi(BaseOptions(
+  ZkGetxHttpApi get createHttpApi {
+    return FlybeeHttpApi(BaseOptions(
       baseUrl: 'http://localhost:8080',
     ));
   }
 
-  @protected
-  @override
-  ThemeData? themeOf(int i) => themeList[i];
+  // @protected
+  // @override
+  // ThemeData? themeOf(int i) => null;
 }
 
 /*
