@@ -17,17 +17,19 @@ class FlyBeeApp extends ImsBeeApp {
   FlyBeeApp() : super() {
     Get.put<FlyBeeApp>(this, permanent: true);
   }
+  @protected
   @override
-  Translations get translations => FlybeeTranslations();
+  Translations get createTranslations => FlybeeTranslations();
   // @override
   // ZkGetxTheme get theme => FlybeeTheme();
   @protected
   @override
-  ZkGetxHttpApi? get httpapi {
+  ZkGetxHttpApi? get createHttpApi {
     FlybeeHttpApi(BaseOptions(
       baseUrl: 'http://localhost:8080',
     ));
   }
+
   @protected
   @override
   ThemeData? themeOf(int i) => null;

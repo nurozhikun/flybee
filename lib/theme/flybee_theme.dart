@@ -13,6 +13,6 @@ Map<ZkValueKey, ThemeData> themes = {
   ),
 };
 
-class FlybeeTheme extends ZkGetxTheme {
-  FlybeeTheme() : super(themes);
-}
+// class FlybeeTheme extends ZkGetxTheme {
+//   FlybeeTheme() : super(themes);
+// }
