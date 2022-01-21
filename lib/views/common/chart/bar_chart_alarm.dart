@@ -1,10 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flybee/filters/flybee_filter.dart';
+import 'package:flybee/filters/flybee_key.dart';
 
 class BarChartAlarm extends StatelessWidget {
-  const BarChartAlarm({Key? key, required this.data, this.width})
+  const BarChartAlarm(
+      {Key? key, required this.data, this.width, required this.controller})
       : super(key: key);
   final List data;
+  final FlyBeeFilter controller;
 
   // 宽度
   final double? width;
@@ -18,10 +22,10 @@ class BarChartAlarm extends StatelessWidget {
       child: BarChart(
         BarChartData(
             // 设置为center对齐，才能使groupsSpace生效
-            alignment: BarChartAlignment.center,
+            alignment: BarChartAlignment.spaceAround,
             maxY: 100,
             // barGroups之间距离
-            groupsSpace: 90,
+            // groupsSpace: 90,
             barGroups: data.map((e) {
               return BarChartGroupData(
                 x: e["xAxis"],
@@ -86,11 +90,11 @@ class BarChartAlarm extends StatelessWidget {
         getTitles: (text) {
           switch (text.toInt()) {
             case 0:
-              return '任务';
+              return controller.labelTextOf(FlybeeKey.beeKeyAmrTask) ?? '';
             case 1:
-              return '设备';
+              return controller.labelTextOf(FlybeeKey.beeKeyAmrVehicle) ?? '';
             case 2:
-              return '库位';
+              return controller.labelTextOf(FlybeeKey.beeKeyPoint) ?? '';
             default:
               return '';
           }

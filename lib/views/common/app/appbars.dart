@@ -3,14 +3,14 @@ import 'package:flybee/filters/index.dart';
 import 'package:zkfly/zkfly.dart';
 import 'package:get/get.dart';
 
-import '../index.dart';
+import '../../index.dart';
 
 class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
     implements PreferredSizeWidget {
   BeeAppBar({Key? key}) : super(key: key);
 
   @override
-  Size get preferredSize => (zkValueKey == FlybeeKey.keySettings)
+  Size get preferredSize => (zkValueKey == FlybeeKey.beeKeySettings)
       ? controller.setAppBarSize
       : controller.appbarSize;
   @override
@@ -30,9 +30,9 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
       centerTitle: true,
       leading: _buildLeading(),
       actions: _buildAction(context),
-      bottom: (zkValueKey == FlybeeKey.keySettings)
+      bottom: (zkValueKey == FlybeeKey.beeKeySettings)
           ? TabBarTab(
-              key: FlybeeKey.keySettingsTap,
+              key: FlybeeKey.beeKeySettingsTap,
               tabInitialIndex: 0,
               tabLength: 3,
             )
@@ -53,12 +53,15 @@ class BeeAppBar extends ZkGetfindView<FlyBeeFilter>
                   filter: controller,
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 2),
                   icon: const ClipOval(
-                    child: Image(
-                        image: AssetImage('assets/images/monitor_noc.jpg')),
+                    child:
+                        Image(image: AssetImage('assets/images/monitor.jpg')),
                   ),
                 ),
               ),
-              const Text('监控模式', style: TextStyle(fontSize: 10)),
+              Text(
+                  controller.labelTextOf(FlybeeKey.beeKeyAmrMonitor) ??
+                      FlybeeKey.beeKeyAmrMonitor.value,
+                  style: const TextStyle(fontSize: 10)),
             ],
           )
         : IconButton(

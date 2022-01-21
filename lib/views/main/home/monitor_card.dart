@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flybee/filters/index.dart';
 
 class MonitorCard extends StatelessWidget {
-  const MonitorCard({Key? key, required this.items, required this.title})
-      : super(key: key);
+  const MonitorCard({
+    Key? key,
+    required this.items,
+    required this.title,
+  }) : super(key: key);
   final List items;
   final String title;
 

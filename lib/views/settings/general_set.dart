@@ -15,26 +15,40 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
       child: Column(
         children: [
           // 功能模式
-          const ExpansionTile(title: Text('监控模式'), children: [
-            ListTile(
-              title: Text('监控模式'),
-            )
-          ]),
+          ExpansionTile(
+              title: Text(controller.labelTextOf(FlybeeKey.beeKeyMode) ?? ''),
+              children: [
+                ListTile(
+                  title: Text(
+                      controller.labelTextOf(FlybeeKey.beeKeyAmrMonitor) ?? ''),
+                )
+              ]),
 
           // 位置
-          const ExpansionTile(title: Text('未选择'), children: [
-            ListTile(
-              title: Text('未选择'),
-            )
-          ]),
+          ExpansionTile(
+              title:
+                  Text(controller.labelTextOf(FlybeeKey.beeKeyLocation) ?? ''),
+              children: [
+                ListTile(
+                  leading: OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                        controller.labelTextOf(FlybeeKey.beeKeyBtnSelect) ??
+                            ''),
+                  ),
+                  // title: Text(
+                  //     controller.labelTextOf(FlybeeKey.beeKeyLocation) ??
+                  //         FlybeeKey.beeKeyLocation.value),
+                )
+              ]),
 
           // 主题
           ValueBuilder<int?>(
             initialValue: ZkGetxApp.to.shared.themeIndex,
             builder: (value, updateFn) {
               return ExpansionTile(
-                  title: Text(controller.labelTextOf(ZkValueKey.keyTheme) ??
-                      ZkValueKey.keyTheme.value),
+                  title:
+                      Text(controller.labelTextOf(ZkValueKey.keyTheme) ?? ''),
                   children: themeList
                       .asMap()
                       .entries
@@ -70,8 +84,8 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
             initialValue: ZkGetxApp.to.shared.localeIndex,
             builder: (value, updateFn) {
               return ExpansionTile(
-                  title: Text(controller.labelTextOf(ZkValueKey.keyLanguage) ??
-                      ZkValueKey.keyLanguage.value),
+                  title: Text(
+                      controller.labelTextOf(ZkValueKey.keyLanguage) ?? ''),
                   children: localeList
                       .asMap()
                       .entries
@@ -100,17 +114,19 @@ class GeneralSet extends ZkGetfindView<FlyBeeFilter> {
             },
           ),
 
+          // 关于app
           ExpansionTile(
-              title: Text(controller.labelTextOf(FlybeeKey.keyAbout) ??
-                  FlybeeKey.keyAbout.value),
-              children: const [
+              title: Text(controller.labelTextOf(FlybeeKey.beeKeyAbout) ?? ''),
+              children: [
                 ListTile(
-                  title: Text('版本'),
-                  trailing: Text('0.0.1'),
+                  title: Text(
+                      controller.labelTextOf(FlybeeKey.beeKeyVersion) ?? ''),
+                  trailing: const Text('0.0.1'),
                 ),
                 ListTile(
-                  title: Text('联系'),
-                  trailing: Text('0571-88888888'),
+                  title: Text(
+                      controller.labelTextOf(FlybeeKey.beeKeyContract) ?? ''),
+                  trailing: const Text('0571-88888888'),
                 )
               ]),
         ],

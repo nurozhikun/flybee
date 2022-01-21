@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'flybee_key.dart';
 
 class FlyBeeFilter extends ZkGetxFilter {
-  // static FlyBeeFilter get to => Get.find();
+  static FlyBeeFilter get to => Get.find();
   FlyBeeFilter() {
     _iconBuild();
     _onPressed();
@@ -16,6 +16,7 @@ class FlyBeeFilter extends ZkGetxFilter {
   Size get appbarSize => const Size.fromHeight(60.0);
   Size get setAppBarSize => const Size.fromHeight(100.0);
   Size get tabbarSize => const Size.fromHeight(40.0);
+  RxInt setProgress = 0.obs;
 
   // String get appbarTitle {
   //   // return "flybee application";
@@ -50,14 +51,14 @@ class FlyBeeFilter extends ZkGetxFilter {
         () => [AmrHome(), AmrMonitor(), AmrTask(), AmrVehicle()]);
     // settingTab
     insertWidgetListBuilder(
-        FlybeeKey.keySettingsTap,
+        FlybeeKey.beeKeySettingsTap,
         () => [
-              labelTextOf(FlybeeKey.keyMainServer),
-              labelTextOf(FlybeeKey.keyAreaServer),
-              labelTextOf(FlybeeKey.keyGeneralSet)
+              labelTextOf(FlybeeKey.beeKeyMainServer),
+              labelTextOf(FlybeeKey.beeKeyAreaServer),
+              labelTextOf(FlybeeKey.beeKeyGeneralSet)
             ].asMap().entries.map((e) => mapTab(e)).toList());
     // settingTabPage
-    insertWidgetListBuilder(FlybeeKey.keySettingsTapPage,
+    insertWidgetListBuilder(FlybeeKey.beeKeySettingsTapPage,
         () => [MainServer(), AreaServer(), GeneralSet()]);
   }
 
@@ -105,6 +106,14 @@ class FlyBeeFilter extends ZkGetxFilter {
     // 返回
     insertOnPressed(FlybeeKey.beeKeyBtnBack, () => Get.back());
 
+    // 取消
+    insertOnPressed(
+        FlybeeKey.beeKeyBtnCancel, () => Get.back(result: 'cancel'));
+
+    // 确认
+    insertOnPressed(
+        FlybeeKey.beeKeyBtnConfirm, (String value) => Get.back(result: value));
+
     // 用户管理
     insertOnPressed(FlybeeKey.beeKeyUserAdmin, () {});
 
@@ -115,21 +124,49 @@ class FlyBeeFilter extends ZkGetxFilter {
     insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, () {});
 
     // 服务器测试
-    insertOnPressed(FlybeeKey.keyTest, (String ip, String port, FlybeeKey key) {
-      if (key == FlybeeKey.keyMainServer) {
-        print(ip + ':' + port);
-      } else if (key == FlybeeKey.keyAreaServer) {
+    insertOnPressed(FlybeeKey.beeKeyTest,
+        (String ip, String port, FlybeeKey key, ZkFilter filter) async {
+      if (key == FlybeeKey.beeKeyMainServer) {
+        var res = await scaleDialogView(
+            CommandKey(
+              filter: filter,
+            ),
+            title: 'commandKey');
+
+        ZkGetxStorage.to.setInt(FlybeeKey.beeKeySetProgress.value, 1);
+        onPressed(FlybeeKey.beeKeySetProgress);
+      } else if (key == FlybeeKey.beeKeyAreaServer) {
         print(ip + ':' + port);
       }
     });
 
     // 服务器保存
-    insertOnPressed(FlybeeKey.keySave, (String ip, String port, FlybeeKey key) {
-      if (key == FlybeeKey.keyMainServer) {
+    insertOnPressed(FlybeeKey.beeKeySave,
+        (String ip, String port, FlybeeKey key, ZkFilter filter) {
+      if (key == FlybeeKey.beeKeyMainServer) {
         print(ip + ':' + port);
-      } else if (key == FlybeeKey.keyAreaServer) {
+      } else if (key == FlybeeKey.beeKeyAreaServer) {
         print(ip + ':' + port);
       }
+    });
+
+    // 设置进度
+    insertOnPressed(FlybeeKey.beeKeySetProgress, () {
+      // 还需考虑用户是否登录
+      // String mainServer =
+      //     ZkGetxStorage.to.getString(FlybeeKey.beeKeyMainServer.value);
+      // String areaServer =
+      //     ZkGetxStorage.to.getString(FlybeeKey.beeKeyAreaServer.value);
+      // if (mainServer.isEmpty) {
+      //   setProgress.value = 0;
+      // } else if (mainServer.isNotEmpty && areaServer.isEmpty) {
+      //   setProgress.value = 1;
+      // } else {
+      //   setProgress.value = 2;
+      // }
+      setProgress.value =
+          ZkGetxStorage.to.getInt(FlybeeKey.beeKeySetProgress.value);
+      print(setProgress.value);
     });
   }
 }

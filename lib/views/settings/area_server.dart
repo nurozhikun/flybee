@@ -11,7 +11,7 @@ class AreaServer extends ZkGetfindView<FlyBeeFilter> {
     return SingleChildScrollView(
       child: Column(children: [
         ServerForm(
-          key: FlybeeKey.keyAreaServer,
+          key: FlybeeKey.beeKeyAreaServer,
           filter: controller,
         ),
         const Divider(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
+import 'package:flybee/utils/index.dart';
 import 'package:zkfly/app/index.dart';
 
 class ServerForm extends StatefulWidget {
@@ -13,9 +14,36 @@ class ServerForm extends StatefulWidget {
 }
 
 class _ServerFormState extends State<ServerForm> {
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _ipCtrl = TextEditingController();
   final _portCtrl = TextEditingController();
+  bool _enableTest = false;
+  bool _enableSave = false;
+
+  @override
+  void initState() {
+    _ipCtrl.addListener(() {
+      setState(() {
+        _enableTest = (_ipCtrl.text.isNotEmpty && _portCtrl.text.isNotEmpty);
+        _enableSave = false;
+      });
+    });
+    _portCtrl.addListener(() {
+      setState(() {
+        _enableTest = (_ipCtrl.text.isNotEmpty && _portCtrl.text.isNotEmpty);
+        _enableSave = false;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _ipCtrl.dispose();
+    _portCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -32,7 +60,7 @@ class _ServerFormState extends State<ServerForm> {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         child: TextFormField(
-          // 自动获取焦点
+          validator: validateServerIp,
           autofocus: widget.autofocus,
           controller: _ipCtrl,
           decoration: const InputDecoration(
@@ -44,6 +72,7 @@ class _ServerFormState extends State<ServerForm> {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         child: TextFormField(
+          validator: validateServerPort,
           autofocus: false,
           controller: _portCtrl,
           decoration: const InputDecoration(
@@ -58,20 +87,30 @@ class _ServerFormState extends State<ServerForm> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             elevatedButton(
-                widget.filter?.labelTextOf(FlybeeKey.keyTest) ?? 'btn',
-                true
-                    ? () => widget.filter
-                        ?.actionOf(FlybeeKey.keyTest)
-                        .onPressedCallback
-                        ?.call(_ipCtrl.text, _portCtrl.text, widget.key)
+                widget.filter?.labelTextOf(FlybeeKey.beeKeyTest) ?? 'btn',
+                _enableTest
+                    ? () async {
+                        if (_formKey.currentState!.validate()) {
+                          var res = await widget.filter
+                              ?.actionOf(FlybeeKey.beeKeyTest)
+                              .onPressedCallback
+                              ?.call(_ipCtrl.text, _portCtrl.text, widget.key,
+                                  widget.filter);
+                          print(res);
+                          setState(() {
+                            _enableSave = true;
+                          });
+                        }
+                      }
                     : null),
             elevatedButton(
-                widget.filter?.labelTextOf(FlybeeKey.keySave) ?? 'btn',
-                true
+                widget.filter?.labelTextOf(FlybeeKey.beeKeySave) ?? 'btn',
+                _enableSave
                     ? () => widget.filter
-                        ?.actionOf(FlybeeKey.keySave)
+                        ?.actionOf(FlybeeKey.beeKeySave)
                         .onPressedCallback
-                        ?.call(_ipCtrl.text, _portCtrl.text, widget.key)
+                        ?.call(_ipCtrl.text, _portCtrl.text, widget.key,
+                            widget.filter)
                     : null),
           ],
         ),

@@ -12,7 +12,7 @@ class MainServer extends ZkGetfindView<FlyBeeFilter> {
     return SingleChildScrollView(
       child: Column(children: [
         ServerForm(
-          key: FlybeeKey.keyMainServer,
+          key: FlybeeKey.beeKeyMainServer,
           filter: controller,
         ),
         const Divider(),
@@ -21,7 +21,7 @@ class MainServer extends ZkGetfindView<FlyBeeFilter> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('设备号'),
+              Text(controller.labelTextOf(FlybeeKey.beeKeyDeviceSn) ?? ''),
               FutureBuilder<String>(
                 future: initPlatformState(),
                 builder: (ctx, snapshot) {
