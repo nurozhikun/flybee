@@ -32,7 +32,7 @@ class BarChartAlarm extends ZkGetfindView<FlyBeeFilter> {
                     y: e["yAxis"],
                     width: 25,
                     // 设置多组颜色会形成渐变
-                    colors: [Get.theme.primaryColor],
+                    colors: [Theme.of(context).primaryColor],
                     borderRadius: BorderRadius.zero,
                   ),
                 ],
@@ -131,7 +131,7 @@ class BarChartAlarm extends ZkGetfindView<FlyBeeFilter> {
       // 触摸提示的内容区域
       touchTooltipData: BarTouchTooltipData(
           // 背景颜色
-          tooltipBgColor: Get.theme.primaryColor,
+          tooltipBgColor: Theme.of(Get.context!).primaryColor,
           // 圆角radius
           tooltipRoundedRadius: 10,
           // padding
