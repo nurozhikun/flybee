@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flybee/filters/index.dart';
 import 'package:flybee/routes/index.dart';
 import 'package:flybee/views/index.dart';
 import 'package:flybee/views/settings/index.dart';
@@ -17,6 +18,17 @@ class FlyBeeFilter extends ZkGetxFilter {
   Size get setAppBarSize => const Size.fromHeight(100.0);
   Size get tabbarSize => const Size.fromHeight(40.0);
   RxInt setProgress = 0.obs;
+
+  // tabController
+  FlyBeeTabController? tabControllerOf(ZkValueKey? key,
+      {int length = 3, int initialIndex = 0, required TickerProvider vsync}) {
+    var c = controllers.putIfAbsent(
+      key,
+      () => FlyBeeTabController(
+          length: length, initialIndex: initialIndex, vsync: vsync),
+    );
+    return c;
+  }
 
   // String get appbarTitle {
   //   // return "flybee application";
@@ -79,7 +91,7 @@ class FlyBeeFilter extends ZkGetxFilter {
     insertPrefixIconBuilder(
         FlybeeKey.beeKeyDeviceAdmin, () => mapIcon(Icons.devices_rounded));
     insertPrefixIconBuilder(
-        FlybeeKey.beeKeyLocatorAdmin, () => mapIcon(Icons.category));
+        FlybeeKey.beeKeyPointAdmin, () => mapIcon(Icons.category));
   }
 
 // onPressed
@@ -91,17 +103,29 @@ class FlyBeeFilter extends ZkGetxFilter {
     // 用户
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
 
+    // 登录
+    insertOnPressed(ZkValueKey.keyLogin, (String userName, String pass) {
+      print(userName);
+    });
+
     // 退出登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogout, () {});
 
     // 跳转到登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogin, () {
       Get.back();
-      Get.to(() => LoginRoute());
+      Get.to(() => LoginRoute(
+            key: ZkValueKey.keyLogin,
+          ));
     });
 
     // 修改密码
-    insertOnPressed(FlybeeKey.beeKeyBtnFixPassword, (params) {});
+    insertOnPressed(FlybeeKey.beeKeyBtnFixPassword, () {
+      Get.back();
+      Get.to(() => LoginRoute(
+            key: FlybeeKey.beeKeyBtnFixPassword,
+          ));
+    });
 
     // 返回
     insertOnPressed(FlybeeKey.beeKeyBtnBack, () => Get.back());
@@ -115,13 +139,22 @@ class FlyBeeFilter extends ZkGetxFilter {
         FlybeeKey.beeKeyBtnConfirm, (String value) => Get.back(result: value));
 
     // 用户管理
-    insertOnPressed(FlybeeKey.beeKeyUserAdmin, () {});
+    insertOnPressed(FlybeeKey.beeKeyUserAdmin, () {
+      Get.back();
+      Get.to(() => UserAdminRoute());
+    });
 
     // 设备管理
-    insertOnPressed(FlybeeKey.beeKeyDeviceAdmin, () {});
+    insertOnPressed(FlybeeKey.beeKeyDeviceAdmin, () {
+      Get.back();
+      Get.to(() => DeviceAdminRoute());
+    });
 
     // 库位管理
-    insertOnPressed(FlybeeKey.beeKeyLocatorAdmin, () {});
+    insertOnPressed(FlybeeKey.beeKeyPointAdmin, () {
+      Get.back();
+      Get.to(() => PointAdminRoute());
+    });
 
     // 服务器测试
     insertOnPressed(FlybeeKey.beeKeyTest,
@@ -132,9 +165,9 @@ class FlyBeeFilter extends ZkGetxFilter {
               filter: filter,
             ),
             title: 'commandKey');
-
-        ZkGetxStorage.to.setInt(FlybeeKey.beeKeySetProgress.value, 1);
+        ZkGetxStorage.to.setInt(FlybeeKey.beeKeySetProgress.value, 0);
         onPressed(FlybeeKey.beeKeySetProgress);
+        return res;
       } else if (key == FlybeeKey.beeKeyAreaServer) {
         print(ip + ':' + port);
       }
@@ -166,7 +199,6 @@ class FlyBeeFilter extends ZkGetxFilter {
       // }
       setProgress.value =
           ZkGetxStorage.to.getInt(FlybeeKey.beeKeySetProgress.value);
-      print(setProgress.value);
     });
   }
 }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flybee/filters/index.dart';
 import 'package:zkfly/zkfly.dart';
 
-class TabBarTab extends ZkGetxPageTabBar<FlyBeeFilter>
+import '../index.dart';
+
+class TabBarTab extends PageTabBar<FlyBeeFilter>
     implements PreferredSizeWidget {
   final int tabLength;
   final int tabInitialIndex;

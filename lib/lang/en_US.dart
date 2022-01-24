@@ -9,7 +9,7 @@ const enUS = <String, String>{
   'btn_login': 'LogIn',
   'btn_user_admin': 'UserAdmin',
   'btn_device_admin': 'DeviceAdmin',
-  'btn_locator_admin': 'LocatorAdmin',
+  'btn_point_admin': 'PointAdmin',
   'btn_select': 'Select',
   'command_key': 'CommandKey',
   'completed': 'Completed',

@@ -9,7 +9,7 @@ const zhCN = <String, String>{
   'btn_login': '登录',
   'btn_user_admin': '用户管理',
   'btn_device_admin': '设备管理',
-  'btn_locator_admin': '库位管理',
+  'btn_point_admin': '库位管理',
   'btn_select': '选择',
   'command_key': '指令',
   'completed': '完成',

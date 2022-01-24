@@ -27,7 +27,7 @@ class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
               const Divider(), //分割线
               _drawerItem(FlybeeKey.beeKeyDeviceAdmin),
               const Divider(), //分割线
-              _drawerItem(FlybeeKey.beeKeyLocatorAdmin),
+              _drawerItem(FlybeeKey.beeKeyPointAdmin),
               const Divider(), //分割线
             ],
           )
