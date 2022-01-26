@@ -5,9 +5,10 @@ import 'package:flybee/views/index.dart';
 import 'package:flybee/views/settings/index.dart';
 import 'package:zkfly/zkfly.dart';
 import 'package:get/get.dart';
+import 'package:zkfly_ims/bee/index.dart';
 import 'flybee_key.dart';
 
-class FlyBeeFilter extends ZkGetxFilter {
+class FlyBeeFilter extends ImsBeeFilter {
   static FlyBeeFilter get to => Get.find();
   FlyBeeFilter() {
     _iconBuild();
@@ -17,6 +18,7 @@ class FlyBeeFilter extends ZkGetxFilter {
   Size get appbarSize => const Size.fromHeight(60.0);
   Size get setAppBarSize => const Size.fromHeight(100.0);
   Size get tabbarSize => const Size.fromHeight(40.0);
+  // 设置的进度
   RxInt setProgress = 0.obs;
 
   // tabController
@@ -103,10 +105,11 @@ class FlyBeeFilter extends ZkGetxFilter {
     // 用户
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
 
-    // 登录
-    insertOnPressed(ZkValueKey.keyLogin, (String userName, String pass) {
-      print(userName);
-    });
+    // // 登录
+    // insertOnPressed(ZkValueKey.keyLogin, (String userName, String pass) {
+    //   print(userName);
+    //   print(actionOf(ZkValueKey.keyLogin));
+    // });
 
     // 退出登录
     insertOnPressed(FlybeeKey.beeKeyBtnLogout, () {});

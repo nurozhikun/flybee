@@ -3,6 +3,8 @@ import 'package:flybee/filters/index.dart';
 import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
 
+import '../../../main.dart';
+
 class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
   UserDrawer({Key? key}) : super(key: key);
 
@@ -75,18 +77,18 @@ class UserDrawer extends ZkGetfindView<FlyBeeFilter> {
         end: Alignment.bottomLeft,
         colors: [Get.theme.primaryColorLight, Get.theme.primaryColor],
       )),
-      accountName: const Padding(
-        padding: EdgeInsets.only(left: 6),
+      accountName: Padding(
+        padding: const EdgeInsets.only(left: 6),
         child: Text(
-          'admin',
-          style: TextStyle(fontSize: 20),
+          FlyBeeApp.to.user?.user ?? '',
+          style: const TextStyle(fontSize: 20),
         ),
       ),
-      accountEmail: const Padding(
-        padding: EdgeInsets.only(left: 6),
+      accountEmail: Padding(
+        padding: const EdgeInsets.only(left: 6),
         child: Text(
-          '13757151027',
-          style: TextStyle(
+          FlyBeeApp.to.user?.tel ?? '',
+          style: const TextStyle(
             fontSize: 16,
           ),
         ),
