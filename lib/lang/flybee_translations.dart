@@ -16,3 +16,8 @@ List<Locale> localeList = [
 class FlybeeTranslations extends ZkGetxTranslations {
   FlybeeTranslations() : super(trans);
 }
+
+// or
+ZkGetxTranslations createTranslations() {
+  return ZkGetxTranslations(trans);
+}

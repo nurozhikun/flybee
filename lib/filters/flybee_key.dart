@@ -2,6 +2,7 @@ import 'package:zkfly/zkfly.dart';
 
 class FlybeeKey extends ZkValueKey {
   static const keyMainPage = FlybeeKey("main_page");
+  static const beeKeyAppBarMain = FlybeeKey("appbar_main");
   // BottomNavigationBar
   static const beeKeyAmrHome = FlybeeKey("home");
   static const beeKeyAmrMonitor = FlybeeKey("monitor");

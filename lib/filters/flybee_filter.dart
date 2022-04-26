@@ -101,10 +101,8 @@ class FlyBeeFilter extends ImsBeeFilter {
     // 跳转到设置页
     insertOnPressed(
         FlybeeKey.beeKeyBtnMonitor, () => Get.to(() => SettingsRoute()));
-
     // 用户
     insertOnPressed(FlybeeKey.beeKeyBtnUser, () {});
-
     // // 登录
     // insertOnPressed(ZkValueKey.keyLogin, (String userName, String pass) {
     //   print(userName);

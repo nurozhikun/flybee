@@ -4,6 +4,7 @@ import 'package:flybee/views/index.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
+import 'package:zkfly_ims/zkfly_ims.dart';
 
 class MainRoute extends ZkGetputView<FlyBeeFilter> {
   MainRoute({Key? key = ZkValueKey.keyHomeRoute})
@@ -17,9 +18,10 @@ class MainRoute extends ZkGetputView<FlyBeeFilter> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: BeeAppBar(
+        appBar: ImsBeeAppBarMain(key: FlybeeKey.beeKeyAppBarMain),
+        /* BeeAppBar(
           key: FlybeeKey.keyMainPage,
-        ),
+        ), */
         body: MainPageView(),
         bottomNavigationBar: MainPageNaviBar(),
         endDrawer: UserDrawer(),
@@ -42,6 +44,7 @@ class MainPageView extends ZkGetxPageView<FlyBeeFilter> {
   }
 }
 
+//the navigators at bottom of the page
 class MainPageNaviBar extends ZkGetxPageNavigationBar<FlyBeeFilter> {
   MainPageNaviBar() : super(key: FlybeeKey.keyMainPage);
   @override
