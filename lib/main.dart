@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 import 'lang/flybee_translations.dart';
 import 'filters/index.dart';
 import 'theme/flybee_theme.dart';
+import 'routes/index.dart';
 
 void main() {
-  FlyBeeApp().run(MainRoute());
+  // FlyBeeApp().run(MainRoute());
+  FlyBeeApp().run(FbRouteHome());
 }
 
 class FlyBeeApp extends ImsBeeApp {

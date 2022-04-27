@@ -28,7 +28,7 @@ const zhCN = <String, String>{
   'monitor': '监控',
   "point": '库位',
   'save': '保存',
-  'settings': '设置',
+  'setting': '设置',
   'title': '标题',
   'task': '任务',
   'task_today': '今日任务',
@@ -37,5 +37,5 @@ const zhCN = <String, String>{
   'todo': '待完成',
   'user': '用户',
   'vehicle': '车辆',
-  'version': '版本'
+  'version': '版本',
 };

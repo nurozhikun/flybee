@@ -7,8 +7,9 @@ import 'package:zkfly/zkfly.dart';
 import 'package:get/get.dart';
 import 'package:zkfly_ims/bee/index.dart';
 import 'flybee_key.dart';
+import '../routes/index.dart';
 
-class FlyBeeFilter extends ImsBeeFilter {
+class FlyBeeFilter extends ImsBeeFilter with FbRouteHomeFilter {
   static FlyBeeFilter get to => Get.find();
   FlyBeeFilter() {
     _iconBuild();
