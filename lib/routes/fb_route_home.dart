@@ -54,7 +54,7 @@ class _FbHomeAppBar extends ImsBeeAppBarMain<FlyBeeFilter> {
   @override
   Widget buildTitle() {
     return Obx(() => Text(FbRouteHomeFilter
-        .homePageBarLabels[controller.homePageCtrl.currentPage.value]));
+        .homePageBarLabels[controller.homePageCtrl.currentPage.value].tr));
     // return Text("task".tr);
   }
 }
