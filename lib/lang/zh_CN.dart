@@ -38,4 +38,8 @@ const zhCN = <String, String>{
   'user': '用户',
   'vehicle': '车辆',
   'version': '版本',
+  'floor1': '一楼',
+  'floor2': '二楼',
+  'floor3': '三楼',
+  'floor4': '四楼',
 };

@@ -4,6 +4,7 @@ import 'package:flybee/filters/index.dart';
 import 'package:get/get.dart';
 import 'package:zkfly/zkfly.dart';
 import 'package:zkfly_ims/zkfly_ims.dart';
+import 'index.dart';
 
 mixin FbRouteHomeFilter {
   static final homePageBarLabels = <String>[
@@ -12,6 +13,13 @@ mixin FbRouteHomeFilter {
     "vehicle",
     "custom",
   ];
+  static var floors = <String>[
+    "floor1",
+    "floor2",
+    "floor3",
+    "floor4",
+  ];
+  RxInt currentFloor = 0.obs;
   GetzkPageController? _homePageCtrl;
   GetzkPageController get homePageCtrl {
     _homePageCtrl ??= GetzkPageController(
@@ -57,6 +65,34 @@ class _FbHomeAppBar extends ImsBeeAppBarMain<FlyBeeFilter> {
         .homePageBarLabels[controller.homePageCtrl.currentPage.value].tr));
     // return Text("task".tr);
   }
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    var ls = <Widget>[
+      Obx(
+        () => DropdownButton<String>(
+          value: FbRouteHomeFilter.floors[controller.currentFloor.value],
+          onChanged: (String? newValue) {
+            controller.currentFloor.value =
+                FbRouteHomeFilter.floors.indexOf(newValue!);
+          },
+          icon: const Icon(Icons.arrow_downward, size: 18),
+          items: FbRouteHomeFilter.floors
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value.tr),
+            );
+          }).toList(),
+          underline: Container(height: 2, color: Colors.deepPurpleAccent),
+          style: const TextStyle(fontSize: 14, color: Colors.black),
+          // itemHeight: null,
+        ),
+      ),
+    ];
+    ls = ls + super.buildActions(context);
+    return ls;
+  }
 }
 
 class _FbHomePageView extends GetzkPageView {
@@ -67,30 +103,37 @@ class _FbHomePageView extends GetzkPageView {
         );
   @protected
   Widget buildPage(BuildContext context, int page) {
-    return Text("View$page");
+    if (2 == page) {
+      return FbViewByFloor();
+    } else {
+      return Text("View$page");
+    }
   }
 }
 
 class _FbHomePageBottomBar extends GetzkPageBottomNavigationBar {
-  _FbHomePageBottomBar(GetzkPageController ctrl) : super(pageCtrl: ctrl);
+  const _FbHomePageBottomBar(GetzkPageController ctrl) : super(pageCtrl: ctrl);
   @override
   List<BottomNavigationBarItem> barItems(BuildContext context, int index) {
+    // FbRouteHomeFilter.homePageBarLabels.map<BottomNavigationBarItem>((e) {
+    //   return BottomNavigationBarItem()
+    // });
     return [
       BottomNavigationBarItem(
         icon: const Icon(Icons.home),
-        label: "home".tr,
+        label: FbRouteHomeFilter.homePageBarLabels[0].tr,
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.place),
-        label: "monitor".tr,
+        label: FbRouteHomeFilter.homePageBarLabels[1].tr,
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.playlist_play),
-        label: "task".tr,
+        label: FbRouteHomeFilter.homePageBarLabels[2].tr,
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.settings),
-        label: "vehicle".tr,
+        label: FbRouteHomeFilter.homePageBarLabels[3].tr,
       ),
     ];
   }

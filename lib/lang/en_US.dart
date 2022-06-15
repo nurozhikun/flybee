@@ -37,5 +37,9 @@ const enUS = <String, String>{
   'todo': 'ToDo',
   'user': 'User',
   'vehicle': 'Vehicle',
-  'version': 'Version'
+  'version': 'Version',
+  "floor1": "floor one",
+  "floor2": "floor two",
+  "floor3": "floor three",
+  "floor4": "floor four",
 };
